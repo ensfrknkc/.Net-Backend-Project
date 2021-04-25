@@ -1,0 +1,21 @@
+﻿using Core.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
+using System.Text;
+
+namespace Core.DataAccess
+{
+    //generic constraint (kısıt)
+    //class : referans tip
+    //IEntity : IEntity olabilir yada IEntity implemente eden bir nesne olabilir
+    //new(): new'lenebilir olmalı , IEntity abstract o yuzden newlenemez
+    public interface IEntityRepository<T> where T:class,IEntity,new()
+    {
+        List<T> GetAll(Expression<Func<T, bool>> filter = null); //Expression filtre yapmayı saglıyor
+        T Get(Expression<Func<T, bool>> filter = null);
+        void Add(T entity);
+        void Update(T entity);
+        void Delete(T entity);
+    }
+}
