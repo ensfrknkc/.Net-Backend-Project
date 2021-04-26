@@ -1,2 +1,3 @@
-"# .Net-Backend-Project" 
-"# .Net-Backend-Project" 
+# .Net-Backend-Project
+
+## C# - OOP - Linq - EntityFramework 
