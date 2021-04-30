@@ -19,6 +19,7 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        //[LogAspect]-->AOP kullanılacak
         public IResult Add(Product product)
         {
             //business codess şartlar karsılanıyorsa eklersın yoksa eklemezsın
@@ -36,7 +37,8 @@ namespace Business.Concrete
         {
             //İş Kodları
             //Yetkisi var mı ? şartları geçincede return
-            if (DateTime.Now.Hour == 22)
+
+            if (DateTime.Now.Hour == 3)
             {
                 return new ErrorDataResult<List<Product>>(Messages.MaintananceTime);
             }
