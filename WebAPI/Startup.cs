@@ -31,12 +31,13 @@ namespace WebAPI
         {
             //**** Autofac **** Hemp IOC(instance yönetimi) Container hemde AOP(log iþlmeleri) sunar bunu kullanýcaz
             //Autofac, Ninject, CastleWindsor, StructureMap, LightInject, DryInject -->IoC Container sunan bazý platformlar
+
+            //AutofacKullanýlacak
            
             services.AddControllers();
-            //IoC burda  (içinde data tutmuyorsa kullan)
-            services.AddSingleton<IProductService,ProductManager>();//bizim yerimize olusturdugu tek ýnsatance yý verýyor
-            //singleton : biri ctor da Iproduct service isterse Product manager ver demek ama 1 kere olusturup hep onu verýr
-            services.AddSingleton<IProductDal, EfProductDal>(); //Product manager bunlara bagýmlý dýye bunlarýda verdýk
+            //AutofacKullanýlacak Alttaki 2 satýra gerek kalmýyacak
+            //services.AddSingleton<IProductService,ProductManager>();          
+            //services.AddSingleton<IProductDal, EfProductDal>(); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
