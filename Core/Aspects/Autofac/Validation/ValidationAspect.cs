@@ -9,11 +9,12 @@ using System.Text;
 
 namespace Core.Aspects.Autofac.Validation
 {
-    public class ValidationAspect : MethodInterception
+    public class ValidationAspect : MethodInterception //Aspect methodun basında sonunda hata kısmında calısabılecek yapı
     {
         private Type _validatorType;
         public ValidationAspect(Type validatorType)
         {
+            //defensive coding
             if (!typeof(IValidator).IsAssignableFrom(validatorType))
             {
                 throw new System.Exception("Bu bir dogrulama sınıfı degil!");
@@ -23,7 +24,7 @@ namespace Core.Aspects.Autofac.Validation
         }
         protected override void OnBefore(IInvocation invocation)
         {
-            var validator = (IValidator)Activator.CreateInstance(_validatorType);
+            var validator = (IValidator)Activator.CreateInstance(_validatorType); //instance olusturma
             var entityType = _validatorType.BaseType.GetGenericArguments()[0]; 
             //yukarıdaki koda ornek acıklama ProductValidatörün git base type ını bul onun generik ilk argumanını al
             var entities = invocation.Arguments.Where(t => t.GetType() == entityType);//Invocation method demek ve parametrelerini bul
